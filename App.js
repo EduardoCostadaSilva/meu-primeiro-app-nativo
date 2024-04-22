@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Home from "./src/Home";
+import { Appearance, StyleSheet, Text, View } from "react-native";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
-export default function App() {
+
+export default function app() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={colorScheme == "dark" ? dark : theme}>
+      <Home />
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+//<PaperProvider theme={colorScheme == 'theme' ? theme : dark} /> // botar no thema escuro
+
+const theme = {
+  ...DefaultTheme,
+  roudness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#fff",
+    primary: "#131313",
+    accent: "#550000",
+    danger: "#ed1c24",
   },
-});
+};
+
+const dark = {
+  ...DefaultTheme,
+  roudness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#131313",
+    primary: "#fff",
+    accent: "#550000",
+    danger: "#ed1c24",
+  },
+};
+
+const colorScheme = Appearance.getColorScheme();
